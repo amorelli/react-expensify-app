@@ -11,15 +11,15 @@ import './styles/styles.scss';
 
 const store = configStore();
 
-store.subscribe(() => {
-  const state = store.getState();
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-  // console.log(visibleExpenses);
-});
+// store.subscribe(() => {
+//   const state = store.getState();
+//   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//   // console.log(visibleExpenses);
+// });
 
-store.dispatch(addExpense({ description: 'Water Bill', amount: 5000, createdAt: 1000 }));
-store.dispatch(addExpense({ description: 'Gas Bill', amount: 2579, createdAt: 9999 }));
-store.dispatch(addExpense({ description: 'Rent', amount: 7770, createdAt: 20000 }));
+// store.dispatch(addExpense({ description: 'Water Bill', amount: 5000, createdAt: 1000 }));
+// store.dispatch(addExpense({ description: 'Gas Bill', amount: 2579, createdAt: 9999 }));
+// store.dispatch(addExpense({ description: 'Rent', amount: 7770, createdAt: 20000 }));
 
 // Provider lets us define the store to provide to our components
 const jsx = (
