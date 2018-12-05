@@ -8,7 +8,9 @@
     "serv": "live-server public/",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "start": "node server/server",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +31,7 @@
     "babel-loader": "^8.0.4",
     "create-react-app": "^2.1.1",
     "css-loader": "^1.0.0",
+    "express": "^4.16.4",
     "live-server": "^1.2.0",
     "mini-css-extract-plugin": "^0.4.5",
     "moment": "^2.22.2",
