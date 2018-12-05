@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serv": "live-server public/",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server"
   },
   "author": "",
@@ -29,6 +30,7 @@
     "create-react-app": "^2.1.1",
     "css-loader": "^1.0.0",
     "live-server": "^1.2.0",
+    "mini-css-extract-plugin": "^0.4.5",
     "moment": "^2.22.2",
     "node-sass": "^4.9.4",
     "normalize.css": "^8.0.0",
