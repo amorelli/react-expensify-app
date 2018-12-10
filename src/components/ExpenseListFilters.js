@@ -18,7 +18,6 @@ class ExpenseListFilters extends React.Component {
   render() {
     return (
       <div>
-        <p>Expense List Filters</p>
         <input 
           type="text" 
           value={this.props.filters.text} // Value set based on the text filter from the store
