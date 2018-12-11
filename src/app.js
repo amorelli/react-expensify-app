@@ -9,6 +9,8 @@ import getVisibleExpenses from './selectors/expenses';
 import getTotalExpenses from './selectors/expenses-total';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import './firebase/firebase';
+// import './playground/promises';
 
 const store = configStore();
 
