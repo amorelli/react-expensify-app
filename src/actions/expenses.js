@@ -56,7 +56,7 @@ export const startSetExpenses = () => {
           ...childSnapshot.val()
         });
       });
-      
+
       // Get data in Redux
       dispatch(setExpenses(expenses));
     });
