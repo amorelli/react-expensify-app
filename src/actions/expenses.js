@@ -1,11 +1,13 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
 
+// Changes the Redux store
 export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
     expense
   });
 
+// Asynchronous function, fetches data from Firebase
 export const startAddExpense = (expenseData = {}) => {
   return (dispatch) => {
     const {
@@ -34,4 +36,29 @@ export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
-}); 
+});
+
+// Setup expense action object with data
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+});
+
+export const startSetExpenses = () => {
+  return (dispatch) => {
+    // Fetch data
+    return database.ref('expenses').once('value').then((snapshot) => {
+      const expenses = [];
+      // Parse data
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      
+      // Get data in Redux
+      dispatch(setExpenses(expenses));
+    });
+  };
+};

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configStore from './store/configStore';
-import { addExpense } from './actions/expenses.js';
+import { startSetExpenses } from './actions/expenses.js';
 import { setTextFilter } from './actions/filters.js';
 import getVisibleExpenses from './selectors/expenses';
 import getTotalExpenses from './selectors/expenses-total';
@@ -24,9 +24,9 @@ store.subscribe(() => {
 
 
 
-store.dispatch(addExpense({ description: 'Water Bill', amount: 5000, createdAt: 1000 }));
-store.dispatch(addExpense({ description: 'Gas Bill', amount: 2579, createdAt: 9999 }));
-store.dispatch(addExpense({ description: 'Rent', amount: 7770, createdAt: 20000 }));
+// store.dispatch(addExpense({ description: 'Water Bill', amount: 5000, createdAt: 1000 }));
+// store.dispatch(addExpense({ description: 'Gas Bill', amount: 2579, createdAt: 9999 }));
+// store.dispatch(addExpense({ description: 'Rent', amount: 7770, createdAt: 20000 }));
 
 // Provider lets us define the store to provide to our components
 const jsx = (
@@ -35,4 +35,10 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, document.getElementById('app'));
+});
+
+
