@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configStore from './store/configStore';
 import { startSetExpenses } from './actions/expenses.js';
 import { setTextFilter } from './actions/filters.js';
@@ -9,7 +9,7 @@ import getVisibleExpenses from './selectors/expenses';
 import getTotalExpenses from './selectors/expenses-total';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 // import './playground/promises';
 
 const store = configStore();
@@ -22,8 +22,6 @@ store.subscribe(() => {
   // console.log('Total expenses: ', totalExpenses);
 });
 
-
-
 // store.dispatch(addExpense({ description: 'Water Bill', amount: 5000, createdAt: 1000 }));
 // store.dispatch(addExpense({ description: 'Gas Bill', amount: 2579, createdAt: 9999 }));
 // store.dispatch(addExpense({ description: 'Rent', amount: 7770, createdAt: 20000 }));
@@ -35,10 +33,27 @@ const jsx = (
   </Provider>
 );
 
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    hasRendered = true;
+  }
+};
+
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
+// Login and Logout
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {   // Check if user is logged in
+    store.dispatch(startSetExpenses()).then(() => { // Fetch expenses
+      renderApp();
+      if (history.location.pathname === '/') { // Only redirect logged in user to dashboard if on Login page
+        history.push('/dashboard');
+      };
+    });
+  } else { // Log out
+    renderApp();
+    history.push('/');
+  }
 });
-
-
