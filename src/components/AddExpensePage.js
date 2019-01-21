@@ -5,13 +5,19 @@ import { startAddExpense } from '../actions/expenses'; // Import startAddExpense
 
 const AddExpensePage = (props) => (
   <div>
-    <h1>Add Expense</h1>
-    <ExpenseForm 
-      onSubmit={(expense) => { // Expense object received from ExpenseForm {description, amount, note, createdAt}
-        props.dispatch(startAddExpense(expense));
-        props.history.push('/'); // Programmatically change pages, takes target page argument
-      }}
-    />
+  <div className="page-header">
+    <div className="content-container">
+      <h1 className="page-header__title">Add Expense</h1>
+    </div>
+  </div>
+    <div className="content-container">
+      <ExpenseForm 
+        onSubmit={(expense) => { // Expense object received from ExpenseForm {description, amount, note, createdAt}
+          props.dispatch(startAddExpense(expense));
+          props.history.push('/'); // Programmatically change pages, takes target page argument
+        }}
+      />
+    </div>
   </div>
 );
 

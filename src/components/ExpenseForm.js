@@ -29,7 +29,7 @@ export default class ExpenseForm extends React.Component {
   onAmountChange = (e) => {
     const amount = e.target.value;
     if ( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) ) { // Matches a string starting (^) with a decimal (\d) continue to match decimals (*)
-      this.setState(() => ({ amount }));       // Matches 0 to 1 groups ( ()? ) of a period (\.) and between 0 and 2 decimals (\d{0,2}) 
+      this.setState(() => ({ amount }));       // Matches 0 to 1 groups (()?) of a period (\.) and between 0 and 2 decimals (\d{0,2}) 
     }                                          // then stop matching ($)
   };
   onDateChange = (createdAt) => {
@@ -57,9 +57,8 @@ export default class ExpenseForm extends React.Component {
   };
   render() {
     return (
-      <div>
-        {this.state.error && <div>{this.state.error}</div>}
-        <form onSubmit={this.onSubmit}>
+        <form className="form" onSubmit={this.onSubmit}>
+          {this.state.error && <p className="form__error">{this.state.error}</p>}
           <input 
             type="text"
             placeholder="Description"
@@ -90,9 +89,10 @@ export default class ExpenseForm extends React.Component {
             onChange={this.onNoteChange}
           >
           </textarea>
-          <button>Add Expense</button>
+          <div>
+            <button className="button">Save Expense</button>
+          </div>
         </form>
-      </div>
     )
   }
 }
