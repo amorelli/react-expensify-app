@@ -14,6 +14,12 @@ const ExpensesSummary = (props) => (
           totaling <span>{getTotalExpenses(props.expenses)}</span>
         </h1>
       }
+      { props.expensestotal.length - props.expenses.length > 0 &&
+        <h3>
+            Not showing {props.expensestotal.length - props.expenses.length} 
+            {props.expensestotal.length - props.expenses.length === 1 ? ' expense ' : ' expenses '} because of filters.
+        </h3>
+      }
       <div className="page-header__actions">
         <Link className="button" to="/create">Add Expense</Link>
       </div>
@@ -23,7 +29,9 @@ const ExpensesSummary = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    expenses: selectExpenses(state.expenses, state.filters)
+    expenses: selectExpenses(state.expenses, state.filters),
+    expensestotal: state.expenses,
+    expensefilters: state.filters
   };
 };
 

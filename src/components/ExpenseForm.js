@@ -17,6 +17,8 @@ export default class ExpenseForm extends React.Component {
       error: '',
     };
   }
+
+
   // Description and Note are tracked by the state and updated
   onDescriptionChange = (e) => {
     const description = e.target.value;
