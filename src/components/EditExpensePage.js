@@ -30,6 +30,10 @@ export class EditExpensePage extends React.Component {
       this.props.history.push('/');
   };
 
+  componentDidMount() {
+    Modal.setAppElement('body');
+  };
+
   render() {
       return (
           <div>
