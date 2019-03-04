@@ -2,7 +2,7 @@ import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 // Changes the Redux store
-export const addExpense = (expense) => ({
+export const addExpense = (expense = {}) => ({
     type: 'ADD_EXPENSE',
     expense
   });

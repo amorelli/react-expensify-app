@@ -71,4 +71,4 @@ store.dispatch(incrementCount({ incrementBy: 10 }));
 
 store.dispatch(incrementCount());
 
-store.dispatch(setCount({ count: 101 }));
+store.dispatch(setCount({ count: 69 }));
