@@ -4,7 +4,7 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
 
 // Our component with props from the store
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
   <div className="content-container">
     <div className="list-header">
       <div className="show-for-mobile">Expenses</div>
