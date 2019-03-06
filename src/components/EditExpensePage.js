@@ -24,9 +24,8 @@ export class EditExpensePage extends React.Component {
       this.setState(() => ({selectedOption: false}));
   };
 
-
   removeExpense = () => {
-      this.props.startRemoveExpense({id: this.props.expense.id});
+      this.props.startRemoveExpense({ id: this.props.expense.id });
       this.props.history.push('/');
   };
 
@@ -73,11 +72,9 @@ const mapDispatchToProps = (dispatch, props) => (
   }
 );
 
-const mapStateToProps = (state, props) => {
-  return {
+const mapStateToProps = (state, props) => ({
       expense: state.expenses.find((expense) => (expense.id === props.match.params.id))
-  };
-};  
+});  
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
 
